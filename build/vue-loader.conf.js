@@ -18,5 +18,10 @@ module.exports = {
     source: 'src',
     img: 'src',
     image: 'xlink:href'
+  },
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: "css-loader" }
+    ]
   }
 }

@@ -8,6 +8,21 @@
     </div>
     <div>
       <b-table :data="data" :columns="columns"></b-table>
+
+    <el-table
+    :data="data"
+    style="width: 100%"
+    height="250">
+    <el-table-column
+      v-for="(column, index) in columns"
+      :key="index"
+      :prop="column.field"
+      :label="column.label"
+      width="120">
+    </el-table-column>
+  </el-table>
+
+
     </div>
   </div>
 </template>

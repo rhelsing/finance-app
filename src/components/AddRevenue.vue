@@ -1,19 +1,14 @@
 <template>
  <div class="add-revenue container is-fluid">
    <h2 class="title is-2">Add New Revenue Record</h2>
-   <form @submit="addRevenue">
-  <!--    <b-field label="Date">
-       <b-datepicker
-         placeholder="Type or select a date..."
-         :readonly="falsße">
-       </b-datepicker>
-     </b-field> -->
-     <div v-for="(c, index) in columns" :key="index" class="field">
-       <label for="fields">{{c.label}}</label>
-       <input class="input" type="text" v-model="c.field" placeholder="Enter data here...">
-     </div>
+   <el-form @submit="addRevenue" ref="form" label-width="120px">
+      <el-form-item v-for="(c, index) in columns" :key="index" :label="c.label">
+        <el-date-picker v-if="c.type == 'date'" type="date" placeholder="Pick a date" v-model="c.field" style="width: 100%;"></el-date-picker>
+        <el-input v-else-if="c.type == 'text'" v-model="c.field"></el-input>
+      </el-form-item>
       <button class="button is-success">Add Record</button>
-   </form>
+   </el-form>
+
  </div>
 </template>
 
@@ -25,11 +20,11 @@ export default {
   data () {
     return {
       columns: {
-        date: {label: 'Date', field: null},
-        invoiceId: {label: 'Invoice ID', field: null},
-        clientName: {label: 'Client name', field: null},
-        description: {label: 'Description', field: null},
-        amount: {label: 'Amount', field: null}
+        date: {label: 'Date', field: null, type: 'date'},
+        invoiceId: {label: 'Invoice ID', field: null, type: 'text'},
+        clientName: {label: 'Client name', field: null, type: 'text'},
+        description: {label: 'Description', field: null, type: 'text'},
+        amount: {label: 'Amount', field: null, type: 'text'}
       },
       feedback: null,
     }
